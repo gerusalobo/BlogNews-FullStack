@@ -1,3 +1,4 @@
+import Image from "./Image";
 import {useState} from "react";
 
 const Navbar = () => {
@@ -5,8 +6,8 @@ const Navbar = () => {
     return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between bg-[#000000]">
         {/*LOGO*/}
-        <div className="flex items-center gap-4 text-2xl font-bold text-white">
-            <img src="/tech.jpg" className="w-24 h-16" style={{ marginLeft: '8px' }} alt="" />
+        <div className="flex items-center gap-4 text-2xl font-bold text-white" style={{ marginLeft: '8px' }}>
+            <Image src="tech.jpg" alt="Techno blog" w={64} h={48} />
             <span>Techno Blog</span>
         </div>
         {/*MOBILE MENU*/}
