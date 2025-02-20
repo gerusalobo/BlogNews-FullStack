@@ -6,6 +6,7 @@ import Homepage from './routes/Homepage.jsx'
 import PostlistPage from './routes/PostListPage.jsx'
 import LoginPage from './routes/LoginPage.jsx'
 import RegisterPage from './routes/RegisterPage.jsx'
+import AboutPage from './routes/AboutPage.jsx'
 import Write from './routes/Write.jsx'
 import MainLayout from './layouts/MainLayout.jsx'
 import { ClerkProvider } from "@clerk/clerk-react";
@@ -34,7 +35,7 @@ const router = createBrowserRouter ([
         element: <Homepage />
       },
       {
-        path: "/:write",
+        path: "/write",
         element: <Write />
       },
       {
@@ -44,6 +45,10 @@ const router = createBrowserRouter ([
       {
         path: "/register",
         element: <RegisterPage />
+      },
+      {
+        path: "/about",
+        element: <AboutPage />
       },
     ]
   }

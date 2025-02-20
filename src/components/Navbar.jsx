@@ -25,9 +25,9 @@ const Navbar = () => {
             open ? "-right-0" : "-right-[100%]"
           }`}
         >
-            <Link to="/">Notícias</Link>
-            <Link to="/">Tendências</Link>
-            <Link to="/">Populares</Link>
+            <Link to="Write">
+                <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
+            </Link>
             <Link to="/">Sobre</Link>
             <SignedOut>
                 <Link to="/login">
@@ -41,10 +41,10 @@ const Navbar = () => {
         </div>
         {/*DESKTOP MENU*/}
         <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium  text-white" style={{ marginRight: '8px' }}>
-        <Link to="/">Notícias</Link>
-            <Link to="/">Tendências</Link>
-            <Link to="/">Populares</Link>
-            <Link to="/">Sobre</Link>
+            <Link to="write">
+                <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
+            </Link>
+            <Link to="/about">Sobre</Link>
             <SignedOut>
                 <Link to="/login">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
