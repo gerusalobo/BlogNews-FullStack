@@ -1,6 +1,15 @@
+import Navbar from "./components/Navbar";
+
 const App = () => {
   return (
-    <div className=''>Hello World</div>
+    <div className='w-full'>
+      {/* NAVBAR */}
+            <Navbar />
+      {/* BREADCRUMB */}
+      {/* INTRODUCTION */}
+      {/* FEATURED POSTS */}
+      {/* POST LIST */}
+</div>
   )
 }
 
