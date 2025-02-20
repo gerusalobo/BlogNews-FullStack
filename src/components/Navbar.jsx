@@ -1,15 +1,17 @@
 import Image from "./Image";
 import {useState} from "react";
+import {Link} from "react-router-dom";
+
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between bg-[#000000]">
         {/*LOGO*/}
-        <div className="flex items-center gap-4 text-2xl font-bold text-white" style={{ marginLeft: '8px' }}>
+        <Link to="/" className="flex items-center gap-4 text-2xl font-bold text-white" style={{ marginLeft: '8px' }}>
             <Image src="tech.jpg" alt="Techno blog" w={64} h={48} />
             <span>Techno Blog</span>
-        </div>
+        </Link>
         {/*MOBILE MENU*/}
         <div className="md:hidden">
             {/*MOBILE BUTTON*/}
@@ -22,24 +24,24 @@ const Navbar = () => {
             open ? "-right-0" : "-right-[100%]"
           }`}
         >
-            <a href="/">Notícias</a>
-            <a href="/">Tendências</a>
-            <a href="/">Populares</a>
-            <a href="/">Sobre</a>
-            <a href="">
+            <Link to="/">Notícias</Link>
+            <Link to="/">Tendências</Link>
+            <Link to="/">Populares</Link>
+            <Link to="/">Sobre</Link>
+            <Link to="/login">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
-            </a>
+            </Link>
            </div>
         </div>
         {/*DESKTOP MENU*/}
         <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium  text-white" style={{ marginRight: '8px' }}>
-            <a href="/">Notícias</a>
-            <a href="/">Tendências</a>
-            <a href="/">Populares</a>
-            <a href="/">Sobre</a>
-            <a href="">
+        <Link to="/">Notícias</Link>
+            <Link to="/">Tendências</Link>
+            <Link to="/">Populares</Link>
+            <Link to="/">Sobre</Link>
+            <Link to="/login">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
-            </a>
+            </Link>
         </div>
     </div>
     );
