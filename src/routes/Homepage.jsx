@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import MainCategory from "../components/MainCategory"
+import FeaturePosts from "../components/FeaturePosts"
 
 const Homepage = () => {
     return (
@@ -17,16 +19,21 @@ const Homepage = () => {
                        Leia sobre as maiores inovações do momento!
                     </h1>
                     <p className="mt-3 text-base">
-                        Tudo desde hardware, Software até AI na palma da sua mão.
+                        Tudo desde Hardware, Software até AI na palma da sua mão.
                     </p>
                 </div>
                 {/* animeted buttons */}
                 <div className=""></div>
                 <Link to="write"> </Link>
             </div>
+            {/* CATEGORIES */}
+                <MainCategory/>
+
             {/* FEATURED POSTS */}
+                <FeaturePosts/>
             
             {/* POST LIST */}
+            
         </div>
     )
 }
