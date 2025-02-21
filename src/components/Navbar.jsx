@@ -28,6 +28,7 @@ const Navbar = () => {
             <Link to="Write">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
             </Link>
+            <Link to="/posts">Artigos</Link>
             <Link to="/">Sobre</Link>
             <SignedOut>
                 <Link to="/login">

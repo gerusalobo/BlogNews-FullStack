@@ -15,7 +15,7 @@ const FeaturePosts = () => {
                     <span className="text-gray-800">2 days ago</span>
                 </div>
                 {/* title */}
-                <Link className="font-bold text-2xl">Titulo1</Link>
+                <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo1</Link>
             </div>
             {/* OTHERS */}
             <div className="w-full lg:w-1/2 flex flex-col gap-4">
@@ -31,7 +31,7 @@ const FeaturePosts = () => {
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="font-bold text-2xl">Titulo2</Link>
+                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo2</Link>
                     </div>
                 </div>
             
@@ -43,11 +43,11 @@ const FeaturePosts = () => {
                     <div className="w-2/3">
                         <div className="flex text-base gap-4">
                             <h1 className="font-semibold">03.</h1>
-                            <Link className="text-gray-800">Software</Link>
+                            <Link className="text-gray-800">Celular</Link>
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="font-bold text-2xl">Titulo3</Link>
+                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo3</Link>
                     </div>
                 </div>
 
@@ -59,11 +59,11 @@ const FeaturePosts = () => {
                     <div className="w-2/3">
                         <div className="flex text-base gap-4">
                             <h1 className="font-semibold">04.</h1>
-                            <Link className="text-gray-800">Celular</Link>
+                            <Link className="text-gray-800">Database</Link>
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="font-bold text-2xl">Titulo4</Link>
+                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium">Titulo4</Link>
                     </div>
                 </div>
             </div>

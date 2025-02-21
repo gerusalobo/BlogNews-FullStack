@@ -9,7 +9,7 @@ const Homepage = () => {
             <div className="flex gap-4 ">
                 <Link to="/">Home</Link>
                 <span>-</span>
-                <span className="text-black" >Artigos</span>
+                <span className="text-black" >News</span>
             </div>
             {/* INTRODUCTION */}
             <div className="flex items-center justify-between">
@@ -33,7 +33,7 @@ const Homepage = () => {
                 <FeaturePosts/>
             
             {/* POST LIST */}
-            
+
         </div>
     )
 }
