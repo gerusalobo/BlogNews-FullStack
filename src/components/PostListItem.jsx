@@ -23,7 +23,7 @@ const PostListItem = () => {
               <p>A empresa chinesa GalaxySpace testou com sucesso a tecnologia de comunicação de celular via satélite, utilizando sua constelação de órbita terrestre baixa para o fornecimento do serviço. A demonstração aconteceu durante evento do setor espacial comercial em Pequim, na última semana. 
 Quando a constelação de satélites passou sobre a Área de Desenvolvimento Econômico-Tecnológico de Pequim, os participantes do experimento conectaram seus smartphones à rede por meio de um dispositivo instalado no telhado. Em seguida, a conexão foi roteada em um gateway em outra área da cidade, ficando pronta para funcionar.
               </p>
-              <Link className="text-blue-800 underline text-sm">Read More</Link>
+              <Link to="/test" className="text-blue-800 underline text-sm">Read More</Link>
             </div>
           </div>        
       </div>

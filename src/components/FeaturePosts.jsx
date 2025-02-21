@@ -15,7 +15,7 @@ const FeaturePosts = () => {
                     <span className="text-gray-800">2 days ago</span>
                 </div>
                 {/* title */}
-                <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo1</Link>
+                <Link to="/test" className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo1</Link>
             </div>
             {/* OTHERS */}
             <div className="w-full lg:w-1/2 flex flex-col gap-4">
@@ -31,7 +31,7 @@ const FeaturePosts = () => {
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo2</Link>
+                        <Link to="/test" className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo2</Link>
                     </div>
                 </div>
             
@@ -47,7 +47,7 @@ const FeaturePosts = () => {
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo3</Link>
+                        <Link to="/test" className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-bold">Titulo3</Link>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@ const FeaturePosts = () => {
                             <span className="text-gray-800">2 days ago</span>
                         </div>
                         {/* title */}
-                        <Link className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium">Titulo4</Link>
+                        <Link to="/test" className="sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium">Titulo4</Link>
                     </div>
                 </div>
             </div>

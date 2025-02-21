@@ -28,8 +28,9 @@ const Navbar = () => {
             <Link to="Write">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
             </Link>
+            <Link to="/">Home</Link>
             <Link to="/posts">Artigos</Link>
-            <Link to="/">Sobre</Link>
+            <Link to="/about">Sobre</Link>
             <SignedOut>
                 <Link to="/login">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
@@ -42,10 +43,13 @@ const Navbar = () => {
         </div>
         {/*DESKTOP MENU*/}
         <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium  text-white" style={{ marginRight: '8px' }}>
+
+            <Link to="/">Home</Link>
+            <Link to="/posts">Artigos</Link>
+            <Link to="/about">Sobre</Link>
             <Link to="write">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
             </Link>
-            <Link to="/about">Sobre</Link>
             <SignedOut>
                 <Link to="/login">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
