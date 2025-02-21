@@ -7,7 +7,7 @@ const FeaturePosts = () => {
             {/* FIRST */}
             <div className="w-full lg:w-1/2 flex flex-col gap-4">
                 {/* image */}
-                <Image src="featured1.jpeg" className="rouded-3xl object-cover"  />
+                <Image src="featured1.jpeg" className="rounded-3xl object-cover"  />
                 {/* details */}
                 <div className="flex items-center gap-4 text-base">
                     <h1 className="font-semibold">01.</h1>
@@ -22,7 +22,7 @@ const FeaturePosts = () => {
             {/* Second */}
                 <div className="lg:h-1/3 flex justify-between gap-4">
                     {/* image */}
-                    <Image src="featured2.jpeg" className="rouded-3xl object-cover w-1/3 aspect-video"/>
+                    <Image src="featured2.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
                     {/* details and title*/}
                     <div className="w-2/3">
                         <div className="flex text-base gap-4">
@@ -38,7 +38,7 @@ const FeaturePosts = () => {
             {/* Third */}
                 <div className="lg:h-1/3 flex justify-between gap-4">
                     {/* image */}
-                    <Image src="featured3.jpeg" className="rouded-3xl object-cover w-1/3 aspect-video"/>
+                    <Image src="featured3.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
                     {/* details and title*/}
                     <div className="w-2/3">
                         <div className="flex text-base gap-4">
@@ -54,7 +54,7 @@ const FeaturePosts = () => {
             {/* Fourty */}
             <div className="lg:h-1/3 flex justify-between gap-4">
                     {/* image */}
-                    <Image src="featured4.jpeg" className="rouded-3xl object-cover w-1/3 aspect-video"/>
+                    <Image src="featured4.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
                     {/* details and title*/}
                     <div className="w-2/3">
                         <div className="flex text-base gap-4">

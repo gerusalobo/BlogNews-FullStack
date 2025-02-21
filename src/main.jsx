@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import {createBrowserRouter,RouterProvider} from "react-router-dom"
 import Homepage from './routes/Homepage.jsx'
-import PostlistPage from './routes/PostListPage.jsx'
+import PostListPage from './routes/PostListPage.jsx'
 import LoginPage from './routes/LoginPage.jsx'
 import RegisterPage from './routes/RegisterPage.jsx'
+import SinglePostPage from "./routes/SinglePostpage.jsx";
 import AboutPage from './routes/AboutPage.jsx'
 import Write from './routes/Write.jsx'
 import MainLayout from './layouts/MainLayout.jsx'
@@ -28,11 +29,11 @@ const router = createBrowserRouter ([
       },
       {
         path: "/posts",
-        element: <PostlistPage />
+        element: <PostListPage />
       },
       {
         path: "/:slug",
-        element: <Homepage />
+        element: <SinglePostPage />,
       },
       {
         path: "/write",
