@@ -1,13 +1,18 @@
 import express from "express"
-//import { getUserSavedPosts, savePost } from "../controllers/user.controller.js"
+import {
+    getPosts,
+    getPost,
+    createPost,
+    deletePost,
+    updatePost
+  } from "../controllers/post.controller.js";
 
 const router = express.Router()
 
-//router.get("/saved", getUserSavedPosts)
-//router.patch("/save", savePost)
-
-router.get("/test",(req,res)=>{
-    res.status(200).send("post")
-    })
+router.get("/", getPosts);
+router.get("/:slug", getPost);
+router.post("/", createPost);
+router.delete("/:id", deletePost);
+router.post("/:id", updatePost);
 
 export default router 

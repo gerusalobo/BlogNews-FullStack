@@ -5,6 +5,7 @@ import postRouter from "./routes/post.route.js"
 import connectDB from "./lib/connectDB.js";
 
 const app = express();
+app.use(express.json());
 
 console.log(process.env.teste)
 
