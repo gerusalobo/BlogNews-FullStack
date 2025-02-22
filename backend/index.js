@@ -16,6 +16,16 @@ res.status(200).send("É grande e fofinha!")
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+  
+    res.json({
+      message: error.message || "Something went wrong!",
+      status: error.status,
+      stack: error.stack,
+    });
+  });
+
 
 app.listen(3000, () => {
     console.log("Server is running!");
