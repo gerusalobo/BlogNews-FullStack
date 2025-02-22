@@ -1,7 +1,9 @@
-Backend: nodeJS
+Projeto de um Blog de Notícias utilizando:
 
-Clerk para autenticação
-Imagekit para armazenamento de imagens
-MongoDB para banco de dados
+- Backend: nodeJS+Express
+- BD: MongoDB no Atlas
+- FrontEnd: ReactJS com CSS, Html e Bootstrap e Vite
+- Autenticação: Clerk
+- Armazenamento de imagens: Imagekit
 
 
