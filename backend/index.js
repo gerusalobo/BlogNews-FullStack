@@ -3,6 +3,8 @@ import 'dotenv/config';
 import userRouter from "./routes/user.route.js"
 import postRouter from "./routes/post.route.js"
 import connectDB from "./lib/connectDB.js";
+import webhookRouter from "./routes/webhook.route.js";
+import { clerkMiddleware, requireAuth } from "@clerk/express";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +17,8 @@ res.status(200).send("É grande e fofinha!")
 
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
+app.use("/webhooks", webhookRouter);
+app.use(clerkMiddleware());
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
