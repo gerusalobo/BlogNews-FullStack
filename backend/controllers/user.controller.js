@@ -13,8 +13,6 @@ export const getUserSavedPosts = async (req, res) => {
 };
 
 export const savePost = async (req, res) => {
-  const clerkUserId = req.auth.userId;
-  const postId = req.body.postId;
 
   if (!clerkUserId) {
     return res.status(401).json("Not authenticated!");

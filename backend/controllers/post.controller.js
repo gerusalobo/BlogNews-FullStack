@@ -1,5 +1,8 @@
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
+import 'dotenv/config';
+import { requireAuth } from "@clerk/express";
+
 
 /*export const getPosts = async (req, res) => {
     const posts = await Post.find().sort({ createdAt: -1 });
@@ -18,7 +21,6 @@ import User from "../models/user.model.js";
     const author = req.query.author;
     const searchQuery = req.query.search;
     const sortQuery = req.query.sort;
-    const featured = req.query.featured;
   
     if (category) {
       query.category = category;
@@ -52,11 +54,7 @@ import User from "../models/user.model.js";
           break;
       }
     }
-  
-    if (featured) {
-      query.isFeatured = true;
-    }
-  
+   
     const posts = await Post.find(query)
       .populate("user", "username")
       .sort(sortObj)
@@ -76,17 +74,76 @@ import User from "../models/user.model.js";
   };
 
   export const createPost = async (req, res) => {
-    const newPost = new Post(req.body)
-    const post = await newPost.save()
+    const clerkUserId = req.auth.userId;
+  
+    console.log("Headers recebidos:", req.headers);
+    console.log("Auth recebido:", req.auth.userId);
+  
+    if (!clerkUserId) {
+      return res.status(401).json("Not authenticated!");
+    }
+  
+    const user = await User.findOne({ clerkUserId });
+  
+    if (!user) {
+      return res.status(404).json("User not found!");
+    }
+  
+    let slug = req.body.title.replace(/ /g, "-").toLowerCase();
+  
+    let existingPost = await Post.findOne({ slug });
+  
+    let counter = 2;
+  
+    while (existingPost) {
+      slug = `${slug}-${counter}`;
+      existingPost = await Post.findOne({ slug });
+      counter++;
+    }
+  
+    const newPost = new Post({ user: user._id, slug, ...req.body });
+  
+    const post = await newPost.save();
     res.status(200).json(post);
   };
 
   export const deletePost = async (req, res) => {
-    const post = await Post.findByIdAndDelete(req.params.id)
+    const clerkUserId = req.auth.userId;
+
+    console.log(req.headers);
+  
+    if (!clerkUserId) {
+      return res.status(401).json("Not authenticated!");
+    }
+  
+    const user = await User.findOne({ clerkUserId });
+  
+    if (!user) {
+      return res.status(404).json("User not found!");
+    }
+
+    const post = await Post.findOneAndDelete({
+      _id: req.params.id
+    });
+
     res.status(200).json("Post has been deleted");
   };
 
   export const updatePost = async (req, res) => {
+    const clerkUserId = req.auth.userId;
+
+    console.log(req.headers);
+  
+    if (!clerkUserId) {
+      return res.status(401).json("Not authenticated!");
+    }
+  
+    const user = await User.findOne({ clerkUserId });
+  
+    if (!user) {
+      return res.status(404).json("User not found!");
+    }
+
     try {
       const existingPost = await Post.findById(req.params.id);
       if (!existingPost) {

@@ -6,13 +6,15 @@ import {
     deletePost,
     updatePost
   } from "../controllers/post.controller.js";
+  import { requireAuth } from "@clerk/express";
+
 
 const router = express.Router()
 
 router.get("/", getPosts);
 router.get("/:slug", getPost);
-router.post("/", createPost);
-router.delete("/:id", deletePost);
-router.post("/:id", updatePost);
+router.post("/", requireAuth(), createPost);
+router.delete("/:id", requireAuth(), deletePost);
+router.post("/:id", requireAuth(), updatePost);
 
 export default router 
