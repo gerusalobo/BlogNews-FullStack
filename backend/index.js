@@ -5,6 +5,7 @@ import postRouter from "./routes/post.route.js"
 import connectDB from "./lib/connectDB.js";
 import webhookRouter from "./routes/webhook.route.js";
 import { clerkMiddleware,requireAuth } from "@clerk/express";
+import cors from "cors";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/bundinha",(req,res)=>{
   res.status(200).send("É grande e fofinha!")
   })
 
+app.use(cors(process.env.CLIENT_URL));
 app.use(clerkMiddleware());
 app.use("/webhooks", webhookRouter);
 app.use(express.json());
