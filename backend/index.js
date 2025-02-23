@@ -7,6 +7,7 @@ import webhookRouter from "./routes/webhook.route.js";
 import { clerkMiddleware, requireAuth } from "@clerk/express";
 
 const app = express();
+app.use("/webhooks", webhookRouter);
 app.use(express.json());
 
 console.log(process.env.teste)
@@ -17,7 +18,7 @@ res.status(200).send("É grande e fofinha!")
 
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
-app.use("/webhooks", webhookRouter);
+
 app.use(clerkMiddleware());
 
 app.use((error, req, res, next) => {
