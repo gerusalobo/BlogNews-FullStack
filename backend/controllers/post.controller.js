@@ -11,7 +11,7 @@ import { requireAuth } from "@clerk/express";
 */
   export const getPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 2;
+    const limit = parseInt(req.query.limit) || 100;
   
     const query = {};
   
@@ -111,6 +111,7 @@ import { requireAuth } from "@clerk/express";
     const clerkUserId = req.auth.userId;
 
     console.log(req.headers);
+    console.log("Auth recebido:", req.auth.userId);
   
     if (!clerkUserId) {
       return res.status(401).json("Not authenticated!");
@@ -133,6 +134,7 @@ import { requireAuth } from "@clerk/express";
     const clerkUserId = req.auth.userId;
 
     console.log(req.headers);
+    console.log("Auth recebido:", req.auth.userId);
   
     if (!clerkUserId) {
       return res.status(401).json("Not authenticated!");
