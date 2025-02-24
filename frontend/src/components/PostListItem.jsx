@@ -1,33 +1,42 @@
+import { Link } from "react-router-dom";
 import Image from "./Image";
-import { Link } from "react-router-dom"
+import { format } from "timeago.js";
 
-const PostListItem = () => {
-    return (
-      <div className="flex flex-col xl:flex-row gap-8 mb-12">
-        
-          {/* Image */}
-          <div className="md:hidden xl:block xl:w-1/3">
-            <Image src="postImg.jpeg" className="rounded-2xl object-cover" w="735"/>
-          </div>
-          {/* Details */}
-          <div className="flex flex-col gap-4 xl:w-2/3">
-            <Link className="text-3xl font-bold">Titulo</Link>
-            <div className="flex items-center gap-2 text-gray-800 text-sm">
-              <span>Escrito por</span>
-              <Link className="font-semibold">John</Link>
-              <span>em</span>
-              <Link className="">Hardware</Link>
-              <span>2 days ago</span>
-            </div>
-            <div>
-              <p>A empresa chinesa GalaxySpace testou com sucesso a tecnologia de comunicação de celular via satélite, utilizando sua constelação de órbita terrestre baixa para o fornecimento do serviço. A demonstração aconteceu durante evento do setor espacial comercial em Pequim, na última semana. 
-Quando a constelação de satélites passou sobre a Área de Desenvolvimento Econômico-Tecnológico de Pequim, os participantes do experimento conectaram seus smartphones à rede por meio de um dispositivo instalado no telhado. Em seguida, a conexão foi roteada em um gateway em outra área da cidade, ficando pronta para funcionar.
-              </p>
-              <Link to="/test" className="text-blue-800 underline text-sm">Read More</Link>
-            </div>
-          </div>        
+const PostListItem = ({ post }) => {
+
+  console.log(post);
+
+  return (
+    <div className="flex flex-col xl:flex-row gap-8 mb-12">
+      {/* image */}
+      {post.img && (
+        <div className="md:hidden xl:block xl:w-1/3">
+          <Image src={post.img} className="rounded-2xl object-cover" w="735" />
+        </div>
+      )}
+      {/* details */}
+      <div className="flex flex-col gap-4 xl:w-2/3">
+        <Link to={`/${post.slug}`} className="text-4xl font-semibold">
+          {post.title}
+        </Link>
+        <div className="flex items-center gap-2 text-gray-400 text-sm">
+          <span>Written by</span>
+          {post.user ? (
+            <span className="text-blue-800">{post.user.username}</span>
+          ) : (
+            <span className="text-gray-600">Desconhecido</span>
+          )}
+          <span>on</span>
+          <Link className="text-blue-800">{post.category}</Link>
+          <span>{format(post.createdAt)}</span>
+        </div>
+        <p>{post.desc}</p>
+        <Link to={`/${post._id}`} className="underline text-blue-800 text-sm">
+          Read More
+        </Link>
       </div>
-    )
-}
+    </div>
+  );
+};
 
-export default PostListItem
+export default PostListItem;

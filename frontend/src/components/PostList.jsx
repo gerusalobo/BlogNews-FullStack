@@ -7,29 +7,24 @@ const fetchPosts = async () => {
   return res.data;
   };
 
-const PostList = () => {
-
-    const {isPending, error, data} = useQuery({
-      queryKey: ["repoData"],
-      queryFn: ()=> fetchPosts(),      
+  const PostList = () => {
+    const { isPending, error, data } = useQuery({
+        queryKey: ["repoData"],
+        queryFn: fetchPosts,
     });
 
-    if(isPending) return "Loading...";
+    if (isPending) return "Loading...";
+    if (error) return "An Error has occurred: " + error.message;
 
-    if(error) return "An Error has occurred" + error.message;
-
-  console.log(data);
+    console.log(data); // Verifica o que a API está retornando
 
     return (
-      <div className="flex flex-col gap-12 mb-8">
-        <PostListItem/>
-        <PostListItem/>
-        <PostListItem/>
-        <PostListItem/>
-        <PostListItem/>
-        <PostListItem/>
+        <div className="flex flex-col gap-12 mb-8">
+            {data?.posts?.map((post) => (
+                <PostListItem key={post._id} post={post} />
+            ))}
         </div>
-    )
-}
+    );
+};
 
 export default PostList

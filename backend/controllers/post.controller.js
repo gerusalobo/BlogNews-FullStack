@@ -1,8 +1,9 @@
-import ImageKit from "imagekit";
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
 import 'dotenv/config';
 import { requireAuth } from "@clerk/express";
+import ImageKit from "imagekit";
+
 
 
 /*export const getPosts = async (req, res) => {
@@ -12,7 +13,7 @@ import { requireAuth } from "@clerk/express";
 */
   export const getPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 100;
+    const limit = parseInt(req.query.limit) || 0;
   
     const query = {};
   
@@ -71,6 +72,7 @@ import { requireAuth } from "@clerk/express";
 
  export const getPost = async (req, res) => {
     const post = await Post.findOne({slug:req.params.slug})
+    .populate("user", "username");
     res.status(200).json(post);
   };
 
