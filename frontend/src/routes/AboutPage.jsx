@@ -1,5 +1,4 @@
-import Image from "../components/image";
-import { Link } from "react-router-dom"
+import Image from "../components/Image";
 
 const AboutPage = () => {
 

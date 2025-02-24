@@ -17,7 +17,7 @@ const MainCategory = () => {
             <div className="bg-gray-200 p-2 rounded-full flex items-center gap-2 ">
                 <svg
                     xmlns="http://w3.org/2000/svg"
-                    viewbox="0 0 24 24"
+                    viewBox="0 0 24 24"
                     width="20"
                     height="20"
                     fill="none"

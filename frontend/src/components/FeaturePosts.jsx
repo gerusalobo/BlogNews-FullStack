@@ -1,4 +1,4 @@
-import Image from "./image";
+import Image from "./Image";
 import { Link } from "react-router-dom"
 
 const FeaturePosts = () => {

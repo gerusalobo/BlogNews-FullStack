@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Image from "./image";
+import Image from "./Image";
 import { SignedIn, SignedOut, UserButton, useAuth } from "@clerk/clerk-react";
 
 const Navbar = () => {
@@ -25,11 +25,10 @@ const Navbar = () => {
                 {open ? "X" : "☰"}
             </div>
            {/*MOBILE LINK LIST*/}
-           <div
-          className={`w-full h-screen bg-[#fbfbfc] flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 transition-all ease-in-out ${
-            open ? "-right-0" : "-right-[100%]"
-          }`}
-        >
+           <div className={`w-full h-screen bg-[#fbfbfc] flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 transition-all ease-in-out ${
+                open ? "-right-0" : "-right-[100%]"
+            }`}
+            >
             <Link to="Write">
                 <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
             </Link>
