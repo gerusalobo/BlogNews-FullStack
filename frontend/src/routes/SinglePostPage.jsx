@@ -24,7 +24,7 @@ const SinglePostPage = () => {
   if (!data) return "Post not found!";
 
     return (
-        <div className="flex flex-col gap-8 " style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
+        <div className="flex flex-col gap-8 bg-white" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
             {/* Detail */}
             <div className="flex gap-8" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
                 <div className="lg:w-3/5 flex flex-col gap-8" >

@@ -3,6 +3,7 @@ import MainCategory from "../components/MainCategory"
 import PostList from "../components/PostList"
 
 const PostListPage = () => {
+    
     return (
         <div className="mt-4 flex flex-col gap-4 text-black" style={{ marginLeft: '8px' }}>
             {/* BREADCRUMB */}

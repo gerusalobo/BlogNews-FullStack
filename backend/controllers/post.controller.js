@@ -13,7 +13,7 @@ import ImageKit from "imagekit";
 */
   export const getPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 0;
+    const limit = parseInt(req.query.limit) || 100;
   
     const query = {};
   

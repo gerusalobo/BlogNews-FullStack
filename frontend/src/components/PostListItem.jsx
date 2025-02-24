@@ -22,7 +22,7 @@ const PostListItem = ({ post }) => {
         <div className="flex items-center gap-2 text-gray-400 text-sm">
           <span>Written by</span>
           {post.user ? (
-            <span className="text-blue-800">{post.user.username}</span>
+            <span className="text-black">{post.user.username}</span>
           ) : (
             <span className="text-gray-600">Desconhecido</span>
           )}

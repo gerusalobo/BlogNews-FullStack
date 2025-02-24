@@ -5,7 +5,7 @@ const MainCategory = () => {
         <div className="hidden md:flex bg-white rounded-3xl xl:rounded-full p-4 shadow-lg items-center justify-center gap-8">
             {/* LINKS */}
             <div className="flex-1 flex items-center justify-between flex-wrap">
-                <Link to="/posts" className="bg-black text-white rounded-full px-4 py-2" >Artigos</Link>
+                <Link to="/posts" className="bg-black text-white rounded-full px-4 py-2" >All</Link>
                 <Link to="/posts?category=hardware">Hardware</Link>
                 <Link to="/posts?category=software">Software</Link>
                 <Link to="/posts?category=celular">Celulares</Link>

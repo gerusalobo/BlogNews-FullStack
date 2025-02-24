@@ -64,8 +64,15 @@ const Write = () => {
         return <div className="">É necessário Logar!</div>
     }
 
-    const handleSubmit = (e) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
+
+        if (isSubmitting) return; // Previne múltiplas submissões
+
+        setIsSubmitting(true); // Ativa o estado de submissão
+
         const formData = new FormData(e.target);
 
         const data = {
@@ -78,7 +85,14 @@ const Write = () => {
 
         console.log(data);
 
-        mutation.mutate(data);
+        //mutation.mutate(data);
+
+        try {
+          await mutation.mutateAsync(data); // Espera a mutação ser resolvida
+            setIsSubmitting(false); // Reseta o estado após a conclusão
+        } catch (error) {
+            setIsSubmitting(false); // Reseta mesmo em caso de erro
+        }
     };
 
       const onError = (err) => {
