@@ -131,7 +131,7 @@ const Write = () => {
                 <div className="flex items-center gap-4">
                     <label htmlFor="">Categoria:</label>
                     <select name="category" id="">
-                        <option value="general">Geral</option>
+                        <option value="tecnologia">Tecnologia</option>
                         <option value="hardware">Hardware</option>
                         <option value="software">Software</option>
                         <option value="celular">Celular</option>
@@ -153,7 +153,7 @@ const Write = () => {
                  <button
                     className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36"
                     >
-                    "Salvar"
+                    Salvar
                 </button>
 
 

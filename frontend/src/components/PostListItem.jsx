@@ -19,19 +19,20 @@ const PostListItem = ({ post }) => {
         <Link to={`/${post.slug}`} className="text-4xl font-semibold">
           {post.title}
         </Link>
-        <div className="flex items-center gap-2 text-gray-400 text-sm">
-          <span>Written by</span>
+        <div className="flex items-center gap-2 text-gray-800 text-sm">
+          <span>Escrito por</span>
           {post.user ? (
             <span className="text-black">{post.user.username}</span>
           ) : (
             <span className="text-gray-600">Desconhecido</span>
           )}
-          <span>on</span>
-          <Link className="text-blue-800">{post.category}</Link>
+          <span>-</span>
+          <Link to={`/posts?category=${post.category}`} className="text-blue-800">{post.category}</Link>
+          <span>-</span>
           <span>{format(post.createdAt)}</span>
         </div>
         <p>{post.desc}</p>
-        <Link to={`/${post._id}`} className="underline text-blue-800 text-sm">
+        <Link to={`/${post.slug}`} className="underline text-blue-800 text-sm">
           Read More
         </Link>
       </div>

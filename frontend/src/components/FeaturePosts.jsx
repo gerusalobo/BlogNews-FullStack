@@ -3,19 +3,29 @@ import Image from "./Image";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "timeago.js";
+import { useEffect, useState } from "react";
+
 
 const fetchPost = async () => {
-  const res = await axios.get(
-    `${import.meta.env.VITE_API_URL}/posts/`
-  );
-  return res.data;
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_URL}/posts/`
+    );
+    return res.data;
 };
 
+
 const FeaturedPosts = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, refetch } = useQuery({
     queryKey: ["featuredPosts"],
     queryFn: () => fetchPost(),
+    staleTime: 0, // Sempre buscar dados novos
+    cacheTime: 0, // Evita cache persistente
   });
+
+  // Refaz a requisição sempre que voltar para essa página
+    useEffect(() => {
+      refetch();
+    }, [location.pathname]); // Roda sempre que a rota mudar
 
   if (isPending) return "loading...";
   if (error) return "Something went wrong!" + error.message;
@@ -38,7 +48,7 @@ const FeaturedPosts = () => {
         {/* details */}
         <div className="flex items-center gap-4">
           <h1 className="font-semibold lg:text-lg">01.</h1>
-          <Link className="text-blue-800 lg:text-lg">{posts[0].category}</Link>
+          <Link to={`/posts?category=${posts[0].category}`} className="text-blue-800 lg:text-lg">{posts[0].category}</Link>
           <span className="text-gray-500">{format(posts[0].createdAt)}</span>
         </div>
         {/* title */}
@@ -65,7 +75,7 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">02.</h1>
-              <Link className="text-blue-800">{posts[1].category}</Link>
+              <Link to={`/posts?category=${posts[1].category}`} className="text-blue-800 lg:text-lg">{posts[1].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[1].createdAt)}</span>
             </div>
             {/* title */}
@@ -91,7 +101,7 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">03.</h1>
-              <Link className="text-blue-800">{posts[2].category}</Link>
+              <Link to={`/posts?categoryr=${posts[2].category}`} className="text-blue-800 lg:text-lg">{posts[2].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[2].createdAt)}</span>
             </div>
             {/* title */}
@@ -117,7 +127,7 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">04.</h1>
-              <Link className="text-blue-800">{posts[3].category}</Link>
+              <Link to={`/posts?category=${posts[3].category}`} className="text-blue-800 lg:text-lg">{posts[3].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[3].createdAt)}</span>
             </div>
             {/* title */}

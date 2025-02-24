@@ -1,18 +1,33 @@
 import Image from "../components/Image";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "timeago.js";
 import { useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 const fetchPost = async (slug) => {
     const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
     return res.data;
   };
 
+  
+const deletePost = async (id, getToken) => {
+    const token = await getToken();
+    await axios.delete(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
 const SinglePostPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+
+  const { isSignedIn } = useUser();
+  const { getToken } = useAuth();
 
   const { isPending, error, data } = useQuery({
     queryKey: ["post", slug],
@@ -23,6 +38,13 @@ const SinglePostPage = () => {
   if (error) return "Something went wrong!" + error.message;
   if (!data) return "Post not found!";
 
+  const handleDelete = async () => {
+    if (window.confirm("Confirma a exclusão do post?")) {
+      await deletePost(data._id, getToken); // Usar o ID do post
+      navigate('/'); // Redirecionar após a exclusão
+    }
+  };
+
     return (
         <div className="flex flex-col gap-8 bg-white" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
             {/* Detail */}
@@ -32,7 +54,11 @@ const SinglePostPage = () => {
                     <p className="text-xl font-semibold">{data.desc}</p>
                     <div className="flex items-center gap-2 text-gray-800 text-sm">
                         <span>Por</span>
-                        <span className="font-semibold">{data.user.username}</span>
+                        {data.user ? (
+                            <span className="font-semibold">{data.user.username}</span>
+                        ) : (
+                            <span className="text-gray-600">Desconhecido</span>
+                        )}                       
                         <span>em</span>
                         <span>{format(data.createdAt)}</span>
                     </div>
@@ -47,7 +73,18 @@ const SinglePostPage = () => {
                 style={{ marginRight: '30px', marginLeft: '30px' }} 
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }} // Sanitização opcional
             />
+            <div className="flex gap-8" style={{marginLeft:'30px', marginRight:'30px'}}>
+                {isSignedIn && ( // Condição para renderizar o botão
+                <button 
+                    onClick={handleDelete} 
+                    className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-red-700"
+                >
+                    Delete Post
+                </button>
+                )}
+            </div>
         </div>
+
     )
 }
 

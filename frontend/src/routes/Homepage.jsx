@@ -4,7 +4,7 @@ import FeaturePosts from "../components/FeaturePosts"
 
 const Homepage = () => {
     return (
-        <div className="mt-4 flex flex-col gap-4 text-black" style={{ marginLeft: '8px' }}>
+        <div className="mt-4 flex flex-col gap-4 text-black" style={{ marginLeft: '8px', marginBottom: '50px' }}>
             {/* BREADCRUMB */}
             <div className="flex gap-4 ">
                 <Link to="/">Home</Link>

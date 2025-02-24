@@ -29,9 +29,11 @@ const Navbar = () => {
                 open ? "-right-0" : "-right-[100%]"
             }`}
             >
-            <Link to="Write">
-                <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
-            </Link>
+            <SignedIn>
+                <Link to="Write">
+                    <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
+                </Link>
+            </SignedIn>
             <Link to="/">Home</Link>
             <Link to="/posts">Artigos</Link>
             <Link to="/about">Sobre</Link>
@@ -51,9 +53,11 @@ const Navbar = () => {
             <Link to="/">Home</Link>
             <Link to="/posts">Artigos</Link>
             <Link to="/about">Sobre</Link>
-            <Link to="write">
-                <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
-            </Link>
+            <SignedIn>
+                <Link to="write">
+                    <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
+                </Link>
+            </SignedIn>
             <SignedOut>
                 <Link to="/login">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>

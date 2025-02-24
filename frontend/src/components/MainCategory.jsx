@@ -6,14 +6,15 @@ const MainCategory = () => {
             {/* LINKS */}
             <div className="flex-1 flex items-center justify-between flex-wrap">
                 <Link to="/posts" className="bg-black text-white rounded-full px-4 py-2" >All</Link>
+                <Link to="/posts?category=tecnologia">Tecnologia</Link>
                 <Link to="/posts?category=hardware">Hardware</Link>
                 <Link to="/posts?category=software">Software</Link>
                 <Link to="/posts?category=celular">Celulares</Link>
-                <Link to="/posts?category=ai">Analytics e AI</Link>
+                <Link to="/posts?category=AI">Analytics e AI</Link>
                 <Link to="/posts?category=database">Banco de Dados</Link>
             </div>
-            <span className="text-xl font-bold">|</span>
-             {/* SEARCH */}
+            {/*<span className="text-xl font-bold">|</span>
+             SEARCH 
             <div className="bg-gray-200 p-2 rounded-full flex items-center gap-2 ">
                 <svg
                     xmlns="http://w3.org/2000/svg"
@@ -27,7 +28,7 @@ const MainCategory = () => {
                     <line x1="16.5" y1="16.5" x2="22" y2="22" />   
                 </svg>
                 <input type="text" placeholder="Busca" className="bg-transparent"/>
-            </div>
+            </div>*/}
         </div>
     )
 }
