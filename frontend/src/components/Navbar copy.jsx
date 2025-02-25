@@ -11,10 +11,6 @@ const Navbar = () => {
             getToken().then((token) => console.log(token))
     },[]);
 
-    const handleLinkClick = () => {
-        setOpen(false); // Fecha o menu ao clicar em um link
-    };
-
     return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between bg-[#000000]">
         {/*LOGO*/}
@@ -34,13 +30,13 @@ const Navbar = () => {
             }`}
             >
             <SignedIn>
-                <Link to="Write" onClick={handleLinkClick}>
+                <Link to="Write">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Novo</button>
                 </Link>
             </SignedIn>
-            <Link to="/" onClick={handleLinkClick}>Home</Link>
-            <Link to="/posts" onClick={handleLinkClick}>Artigos</Link>
-            <Link to="/about" onClick={handleLinkClick}>Sobre</Link>
+            <Link to="/">Home</Link>
+            <Link to="/posts">Artigos</Link>
+            <Link to="/about">Sobre</Link>
             <SignedOut>
                 <Link to="/login">
                     <button className="py-2 px-4 rounded-3xl bg-gray-300 text-black font-bold">Login</button>
