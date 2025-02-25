@@ -12,17 +12,20 @@ import ImageKit from "imagekit";
   };
 */
   export const getPosts = async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 100;
+
+    const queryParams = JSON.parse(JSON.stringify(req.query));
+
+    const page = parseInt(queryParams.page) || 1;
+    const limit = parseInt(queryParams.limit) || 100;
   
     const query = {};
   
-    console.log(req.query);
+    console.log(queryParams);
   
-    const category = req.query.category;
-    const author = req.query.author;
-    const searchQuery = req.query.search;
-    const sortQuery = req.query.sort;
+    const category = queryParams.category;
+    const author = queryParams.author;
+    const searchQuery = queryParams.search;
+    const sortQuery = queryParams.sort;
   
     if (category) {
       query.category = category;

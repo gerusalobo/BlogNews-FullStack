@@ -6,6 +6,7 @@ import { format } from "timeago.js";
 import { useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
 import { useAuth, useUser } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
 
 const fetchPost = async (slug) => {
     const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
@@ -26,13 +27,22 @@ const SinglePostPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const { getToken } = useAuth();
 
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, refetch  } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
-  });
+    refetchOnMount: true, // Recarrega os dados ao montar
+    refetchOnWindowFocus: true, // Recarrega os dados ao focar na janela
+    staleTime: 0, // Sempre buscar dados novos
+    cacheTime: 0, // Evita cache persistente
+});
+  // Refaz a requisição sempre que voltar para essa página
+  useEffect(() => {
+    refetch(); // Força a atualização dos dados sempre que o componente é montado
+  }, [slug, refetch]);
+
 
   if (isPending) return "loading...";
   if (error) return "Something went wrong!" + error.message;
@@ -42,11 +52,16 @@ const SinglePostPage = () => {
     if (window.confirm("Confirma a exclusão do post?")) {
       await deletePost(data._id, getToken); // Usar o ID do post
       navigate('/'); // Redirecionar após a exclusão
+      window.location.reload();
     }
   };
 
+  const handleEdit = () => {
+    navigate("/write", { state: { post: data } }); // Passa o post para edição
+  };
+
     return (
-        <div className="flex flex-col gap-8 bg-white" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
+        <div className="flex flex-col gap-8 bg-white" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px', margimBottom:'50px'}}>
             {/* Detail */}
             <div className="flex gap-8" style={{marginTop:'30px', marginLeft:'30px', marginRight:'30px'}}>
                 <div className="lg:w-3/5 flex flex-col gap-8" >
@@ -73,18 +88,25 @@ const SinglePostPage = () => {
                 style={{ marginRight: '30px', marginLeft: '30px' }} 
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }} // Sanitização opcional
             />
-            <div className="flex gap-8" style={{marginLeft:'30px', marginRight:'30px'}}>
+            <div className="flex gap-8"  style={{marginLeft:'30px', marginRight:'30px', margimBottom:'50px'}}>
                 {isSignedIn && ( // Condição para renderizar o botão
-                <button 
-                    onClick={handleDelete} 
-                    className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-red-700"
-                >
-                    Delete Post
-                </button>
+                    <button 
+                        onClick={handleDelete} 
+                        className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-red-700"
+                    >
+                        Delete Post
+                    </button>
+                )}
+                {isSignedIn && ( // Condição para renderizar o botão
+                    <button 
+                        onClick={handleEdit} 
+                        className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-blue-700"
+                        >
+                            Edit Post
+                        </button>                   
                 )}
             </div>
         </div>
-
     )
 }
 

@@ -3,165 +3,148 @@ import "react-quill-new/dist/quill.snow.css";
 import ReactQuill from "react-quill-new";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IKContext, IKUpload } from "imagekitio-react";
 
-
 const authenticator = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/posts/upload-auth`
-      );
-  
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(
-          `Request failed with status ${response.status}: ${errorText}`
-        );
-      }
-  
-      const data = await response.json();
-      const { signature, expire, token } = data;
-      return { signature, expire, token };
-    } catch (error) {
-      throw new Error(`Authentication request failed: ${error.message}`);
-    }
-  };
-  
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/posts/upload-auth`
+    );
+    if (!response.ok) throw new Error(`Erro ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    throw new Error(`Erro ao autenticar upload: ${error.message}`);
+  }
+};
 
 const Write = () => {
+  const { isLoaded, isSignedIn } = useUser();
+  const { getToken } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const {isLoaded, isSignedIn} = useUser();
-    const [value, setValue] = useState("");
-    const [cover, setCover] = useState("");
-
-    const navigate = useNavigate();
-
-    const { getToken } = useAuth();
+  const post = location.state?.post || null; // Pega o post caso esteja editando
   
-    const mutation = useMutation({
-        mutationFn: async (newPost) => {
-          const token = await getToken();
-          return axios.post(`${import.meta.env.VITE_API_URL}/posts`, newPost, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        },
-        onSuccess: (res) => {
-          toast.success("Post has been created");
-          navigate(`/${res.data.slug}`);
-        },
+  // Estados para os dados do post
+  const [value, setValue] = useState(post?.content || "");
+  const [title, setTitle] = useState(post?.title || "");
+  const [category, setCategory] = useState(post?.category || "tecnologia");
+  const [desc, setDesc] = useState(post?.desc || "");
+  const [cover, setCover] = useState(post?.img || ""); // Imagem nova
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Redireciona para login se não estiver autenticado
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      navigate("/login");
+    }
+  }, [isLoaded, isSignedIn, navigate]);
+
+  // Definir se é criação ou edição
+  const isEditing = Boolean(post);
+
+  const mutation = useMutation({
+    mutationFn: async (postData) => {
+      const token = await getToken();
+      const url = isEditing
+        ? `${import.meta.env.VITE_API_URL}/posts/${post._id}` // Edição (POST)
+        : `${import.meta.env.VITE_API_URL}/posts`; // Novo post (POST)
+
+      const method = isEditing ? "post" : "post";
+      return axios[method](url, postData, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-   
-    if(!isLoaded){
-        return <div className="">Carregando o usuário</div>
-    }
+    },
+    onSuccess: (res) => {
+      toast.success(isEditing ? "Post atualizado!" : "Post criado!");
+      navigate(`/${res.data.slug}`);
+      window.location.reload()
+    },
+    onError: () => {
+      toast.error("Erro ao salvar post.");
+    },
+  });
 
-    if(isLoaded && !isSignedIn){
-        return <div className="">É necessário Logar!</div>
-    }
+  if (!isLoaded) {
+    return <div>Carregando...</div>;
+  }
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        if (isSubmitting) return; // Previne múltiplas submissões
-
-        setIsSubmitting(true); // Ativa o estado de submissão
-
-        const formData = new FormData(e.target);
-
-        const data = {
-          img: cover.filePath || "",
-          title: formData.get("title"),
-          category: formData.get("category"),
-          desc: formData.get("desc"),
-          content: value,
-        };
-
-        console.log(data);
-
-        //mutation.mutate(data);
-
-        try {
-          await mutation.mutateAsync(data); // Espera a mutação ser resolvida
-            setIsSubmitting(false); // Reseta o estado após a conclusão
-        } catch (error) {
-            setIsSubmitting(false); // Reseta mesmo em caso de erro
-        }
+    setIsSubmitting(true);
+    const postData = {
+      img: cover?.filePath || cover, // Pega a nova imagem ou mantém a existente
+      title,
+      category,
+      desc,
+      content: value,
     };
 
-      const onError = (err) => {
-        console.log(err);
-        toast.error("upload failed!");
-      };
-      const onSuccess = (res) => {
-        console.log(res);
-        setCover(res);
-      };
+    try {
+      await mutation.mutateAsync(postData);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    return (
-        <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6" style={{marginTop:'30px', marginLeft:'50px', marginRight:'50px'}}> 
-            <h1 className="text-cl font-light"> Crie um novo Post</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
-                {/*<button className="w-max p-2 shadow-md rounded-xl text-sm text-white bg-black">
-                    Adicione uma Imagem
-                </button>*/}
-                <IKContext
-                    publicKey={import.meta.env.VITE_IK_PUBLIC_KEY}
-                    urlEndpoint={import.meta.env.VITE_IK_URL_ENDPOINT}
-                    authenticator={authenticator}
-                    >
-                        <IKUpload
-                            useUniqueFileName
-                            onError={onError}
-                            onSuccess={onSuccess}
-                            />
-                </IKContext>
-                <input
-                    className="text-4xl font-semibold bg-white outline-none"
-                    type="text"
-                    placeholder="Titulo"
-                    name="title"
-                />
-                <div className="flex items-center gap-4">
-                    <label htmlFor="">Categoria:</label>
-                    <select name="category" id="">
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="hardware">Hardware</option>
-                        <option value="software">Software</option>
-                        <option value="celular">Celular</option>
-                        <option value="AI">Analytis e AI</option>
-                        <option value="database">Banco de Dados</option>
-                    </select>
-                </div>
-                <textarea
-                    className="p-4 rounded-xl bg-white shadow-md"
-                    name="desc"
-                    placeholder="Resumo"
-                />
-                <ReactQuill
-                    theme="snow"
-                    className="flex-1 rounded-xl bg-white shadow-md"
-                    value={value}
-                    onChange={setValue}
-                />
-                 <button
-                    className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36"
-                    >
-                    Salvar
-                </button>
+  return (
+    <div className="h-[calc(100vh-64px)] flex flex-col gap-6 mt-8 mx-12">
+      <h1 className="text-cl font-light">{isEditing ? "Editar Post" : "Criar Novo Post"}</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
+      <h1 className="text-cl font-light">{cover.filePath}</h1>
+        <IKContext
+          publicKey={import.meta.env.VITE_IK_PUBLIC_KEY}
+          urlEndpoint={import.meta.env.VITE_IK_URL_ENDPOINT}
+          authenticator={authenticator}
+        >
+          <IKUpload useUniqueFileName onError={() => toast.error("Upload falhou!")} onSuccess={setCover} />
+        </IKContext>
 
+        <input
+          className="text-4xl font-semibold bg-white outline-none"
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-
-            </form>
-        
+        <div className="flex items-center gap-4">
+          <label>Categoria:</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="hardware">Hardware</option>
+            <option value="software">Software</option>
+            <option value="celular">Celular</option>
+            <option value="AI">Analytics e AI</option>
+            <option value="database">Banco de Dados</option>
+          </select>
         </div>
-    )
-}
 
-export default Write
+        <textarea
+          className="p-4 rounded-xl bg-white shadow-md"
+          placeholder="Resumo"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+        />
+
+        <ReactQuill
+          theme="snow"
+          className="flex-1 rounded-xl bg-white shadow-md"
+          value={value}
+          onChange={setValue}
+        />
+
+        <button className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36" disabled={isSubmitting}>
+          {isSubmitting ? "Salvando..." : isEditing ? "Atualizar" : "Salvar"}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Write;

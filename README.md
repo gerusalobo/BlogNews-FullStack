@@ -6,4 +6,7 @@ Projeto de um Blog de Notícias utilizando:
 - Autenticação: Clerk
 - Armazenamento de imagens: Imagekit
 
+Para startar o backend: node index.js
+Para startar o frontend: npm run dev
+
 

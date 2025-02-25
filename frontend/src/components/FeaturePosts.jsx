@@ -18,6 +18,8 @@ const FeaturedPosts = () => {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["featuredPosts"],
     queryFn: () => fetchPost(),
+    refetchOnMount: true, // Recarrega os dados ao montar
+    refetchOnWindowFocus: true, // Recarrega os dados ao focar na janela
     staleTime: 0, // Sempre buscar dados novos
     cacheTime: 0, // Evita cache persistente
   });
