@@ -269,17 +269,36 @@ Ela é composta por:
 
 ##### SinglePostPage.jsx
 
+![image-20250225172504954](./img/image-20250225172504954.png)
 
+Se o usuário estiver logado, essa tela apresenta ao final os botões de Delete ou Editar o Post.
+
+**Rotas:** 
+
+- Ao clicar em delete, te uma mensagem de confirmação, e o post é detetado voltando para a Home.
+- Ao clicar em Edit, chama a tela Write, com os dados do Post a ser editado.
 
 
 
 ##### Write.jsx
 
+Essa tela é usada para criação e Edição de Posts.
 
+Em caso de Edição ela carrega os dados do Post a serem editados.
+
+Permite o upload de arquivos para o imageKit e montar o conteúdo do Post em Html usando o ReactQuill.
+
+
+
+![image-20250225172435388](./img/image-20250225172435388.png)
 
 
 
 ##### AboutPage.jsx
+
+É uma página estática sobre o Projeto.
+
+![image-20250225173119578](./img/image-20250225173119578.png)
 
 
 
