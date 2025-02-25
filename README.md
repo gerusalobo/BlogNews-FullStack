@@ -191,9 +191,9 @@ Arquivos na Raiz:
 
 
 
-#### Principais Telas, Componentes e Funcionalidades
+## Principais Telas, Componentes e Funcionalidades
 
-##### Navbar.jsx
+### Navbar.jsx
 
 Menu Superior com Logo e Botões de redirecionamento.
 
@@ -209,7 +209,7 @@ Rotas:
 
 
 
-##### LoginPage.jsx e RegisterPage.jsx
+### LoginPage.jsx e RegisterPage.jsx
 
 Componentes do Clerk através de SignIn e SignUp do "@clerk/clerk-react".
 
@@ -219,7 +219,7 @@ Nessas telas é possível logar ou criar um novo usuário.
 
 
 
-##### Homepage.jsx
+### Homepage.jsx
 
 ![image-20250225165521525](./img/image-20250225165521525.png)
 
@@ -241,7 +241,7 @@ Ela é composta por:
 
 
 
-##### PostListPage.jsx
+### PostListPage.jsx
 
 ![](./img/image-20250225171426449.png)
 
@@ -267,7 +267,7 @@ Ela é composta por:
 
 
 
-##### SinglePostPage.jsx
+### SinglePostPage.jsx
 
 ![image-20250225172504954](./img/image-20250225172504954.png)
 
@@ -280,7 +280,7 @@ Se o usuário estiver logado, essa tela apresenta ao final os botões de Delete 
 
 
 
-##### Write.jsx
+### Write.jsx
 
 Essa tela é usada para criação e Edição de Posts.
 
@@ -294,7 +294,7 @@ Permite o upload de arquivos para o imageKit e montar o conteúdo do Post em Htm
 
 
 
-##### AboutPage.jsx
+### AboutPage.jsx
 
 É uma página estática sobre o Projeto.
 
