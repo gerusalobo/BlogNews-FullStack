@@ -27,20 +27,15 @@ Tecnologias utilizadas:
 
 
 
+Vídeo de Apresentação: https://youtu.be/TZ6kULzijKQ
+
 ## Acesso a Aplicação
 
 A Aplicação está ativa como um serviço em um servidor linux Mint local com o MongoDB no Atlas.
 
-Url de Acesso a Aplicação:
+Url de Acesso a Aplicação: http://sol.librian.info:5731
 
-http://sol.librian.info:3001
 
-Credenciais de Acesso:
-- username: teste
-
-- password: XPe4nqo54ent6!hDkairn#76mdj3os1
-
-  
 
 
 ## Funcionalidades
