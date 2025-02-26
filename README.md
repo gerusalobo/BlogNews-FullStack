@@ -33,7 +33,7 @@ Vídeo de Apresentação: https://youtu.be/TZ6kULzijKQ
 
 A Aplicação está ativa como um serviço em um servidor linux Ubuntu local com o MongoDB no Atlas.
 
-Url de Acesso a Aplicação: http://sol.librian.info:5731
+Url de Acesso a Aplicação: [http://sol.librian.info:5731](http://sol.librian.info:5173/)
 
 
 
