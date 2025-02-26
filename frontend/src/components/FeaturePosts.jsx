@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const fetchPost = async () => {
     const res = await axios.get(
-      `${import.meta.env.VITE_API_URL}/posts/`
+      `/posts/`
     );
     return res.data;
 };

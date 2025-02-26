@@ -29,6 +29,12 @@ Tecnologias utilizadas:
 
 Vídeo de Apresentação: https://youtu.be/TZ6kULzijKQ
 
+## Acesso a Aplicação
+
+A Aplicação está ativa como um serviço em um servidor linux Mint local com o MongoDB no Atlas.
+
+Url de Acesso a Aplicação: http://sol.librian.info:5731
+
 
 
 
@@ -293,30 +299,73 @@ Permite o upload de arquivos para o imageKit e montar o conteúdo do Post em Htm
 
 ## Configuração e Uso
 
+Para facilitar, na documentação no Git tem um .env_model no frontend e no backend com todos os itens que precisam de configuração para o funcionamento da Aplicação.
 
+**Copiar e Instalar Dependências**:
 
-1. **Copiar e Instalar Dependências**:
+```
+bash
+Copiar código
 
-   ```
-   bash
-   Copiar código
-   npm install
-   ```
+/backend
+npm install
 
-   
+/frontend
+npm install
+```
 
-2. **Executar o servidor**:
+**Ativar e configurar o MongoDB**
 
-   ```
-   bash
-   cd /backend
-   node index.js
-   
-   cd /frontend
-   npm run dev
-   ```
+```
+/backend
+.env
+MONGODB_URI=
+```
 
-4. **Acesso a Aplicação**:
+**Ativar e configurar o Clerk**
+
+```
+/backend
+.env
+CLERK_WEBHOOK_SECRET=
+CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+/frontend
+.env
+VITE_CLERK_PUBLISHABLE_KEY = 
+```
+
+**Ativar e configurar o Imagekit**
+
+```
+/backend
+.env
+CLERK_WEBHOOK_SECRET=
+CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+/frontend
+.env
+IK_URL_ENDPOINT = 
+IK_PUBLIC_KEY = 
+IK_PRIVATE_KEY = 
+```
+
+**Executar o servidor**:
+
+```
+bash
+cd /backend
+node index.js
+
+cd /frontend
+npm run dev
+```
+
+Caso queira rodar como serviço ver no Git: /serviços/Como criar o serviço
+
+**Acesso a Aplicação**:
 
   Caso rode a aplicação de forma local, o acesso será através da url: http://localhost:5173
 

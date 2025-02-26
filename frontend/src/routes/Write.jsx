@@ -11,7 +11,7 @@ import { IKContext, IKUpload } from "imagekitio-react";
 const authenticator = async () => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/posts/upload-auth`
+      `/posts/upload-auth`
     );
     if (!response.ok) throw new Error(`Erro ${response.status}`);
     return await response.json();
@@ -50,8 +50,8 @@ const Write = () => {
     mutationFn: async (postData) => {
       const token = await getToken();
       const url = isEditing
-        ? `${import.meta.env.VITE_API_URL}/posts/${post._id}` // Edição (POST)
-        : `${import.meta.env.VITE_API_URL}/posts`; // Novo post (POST)
+        ? `/posts/${post._id}` // Edição (POST)
+        : `/posts`; // Novo post (POST)
 
       const method = isEditing ? "post" : "post";
       return axios[method](url, postData, {

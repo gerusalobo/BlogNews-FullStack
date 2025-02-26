@@ -1,0 +1,81 @@
+1️⃣ Criar o serviço para o backend (Node.js)
+
+1.1 Criar o arquivo de serviço
+Crie um arquivo de serviço no systemd:
+
+sudo nano /etc/systemd/system/backend.service
+
+1.2 Configurar o serviço
+Adicione o seguinte conteúdo, ajustando os caminhos conforme necessário:
+
+[Unit]
+Description=Backend Node.js API
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /caminho/para/backend/server.js
+WorkingDirectory=/caminho/para/backend
+Restart=always
+User=seu_usuario
+Environment=NODE_ENV=production
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=backend-service
+
+[Install]
+WantedBy=multi-user.target
+
+1.3 Ativar e iniciar o serviço
+
+sudo systemctl daemon-reload
+sudo systemctl enable backend
+sudo systemctl start backend
+
+Para verificar o status:
+
+sudo systemctl status backend
+Para ver os logs:
+
+journalctl -u backend -f
+
+
+2️⃣ Criar o serviço para o frontend (React/Vite)
+
+2.1 Criar o arquivo de serviço
+
+sudo nano /etc/systemd/system/frontend.service
+2.2 Configurar o serviço
+Se você estiver rodando o frontend com npm run dev, ele precisa rodar como um processo de fundo. Use ExecStart com Vite ou sirva os arquivos estáticos (build) com Nginx.
+
+Opção 1: Servir com Vite (modo desenvolvimento)
+
+[Unit]
+Description=Frontend React/Vite
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/npm run dev -- --host
+WorkingDirectory=/caminho/para/frontend
+Restart=always
+User=seu_usuario
+Environment=NODE_ENV=production
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frontend-service
+
+[Install]
+WantedBy=multi-user.target
+
+2.3 Ativar e iniciar o serviço
+
+sudo systemctl daemon-reload
+sudo systemctl enable frontend
+sudo systemctl start frontend
+
+Para verificar o status:
+
+sudo systemctl status frontend
+
+Para ver os logs:
+
+journalctl -u frontend -f
