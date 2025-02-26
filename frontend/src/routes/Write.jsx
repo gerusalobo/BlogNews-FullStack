@@ -138,8 +138,7 @@ const Write = () => {
           value={value}
           onChange={setValue}
         />
-
-        <button className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36" disabled={isSubmitting}>
+         <button className="bg-blue-800 text-white font-medium rounded-xl mt-4 p-2 w-36 z-50" disabled={isSubmitting}>
           {isSubmitting ? "Salvando..." : isEditing ? "Atualizar" : "Salvar"}
         </button>
       </form>

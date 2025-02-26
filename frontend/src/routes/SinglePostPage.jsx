@@ -100,7 +100,7 @@ const SinglePostPage = () => {
                 {isSignedIn && ( // Condição para renderizar o botão
                     <button 
                         onClick={handleEdit} 
-                        className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-blue-700"
+                        className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-blue-700 z-index:1" 
                         >
                             Edit Post
                         </button>                   

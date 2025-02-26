@@ -7,7 +7,7 @@ ExecStart=/usr/bin/npm run dev -- --host
 WorkingDirectory=/home/gerusa/BlogNews-FullStack/frontend/
 Restart=always
 User=gerusa
-Environment=NODE_ENV=production
+Environment=NODE_ENV=development
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=frontend-service
