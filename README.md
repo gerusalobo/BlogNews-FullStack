@@ -385,4 +385,4 @@ Caso queira rodar como serviço ver na documentação: /serviços/Como criar o s
 
 
 - O desenvolvimento foi realizado usando o VSCode em máquina Windows 11 com acesso a API via rede local.
-- O software foi implantado em produção em um servidor linux Mint local conectado a API via localhost, e a aplicação ativada como serviço.
+- O software foi implantado em produção em um servidor linux Ubuntu local conectado a API via localhost, e a aplicação ativada como serviço.
