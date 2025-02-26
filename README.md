@@ -352,6 +352,18 @@ IK_PUBLIC_KEY =
 IK_PRIVATE_KEY = 
 ```
 
+**Proxy no Vite**
+
+```
+/frontend
+vite.config.js
+
+Todas as chamadas de API estão configuradas com endereço relativo via proxy.
+Ajustar o vite.config.js com o IP Local do servidor que tem a API.
+
+target: 'http://192.168.1.202:3000', // URL da API local
+```
+
 **Executar o servidor**:
 
 ```
@@ -363,7 +375,7 @@ cd /frontend
 npm run dev
 ```
 
-Caso queira rodar como serviço ver no Git: /serviços/Como criar o serviço
+Caso queira rodar como serviço ver na documentação: /serviços/Como criar o serviço.
 
 **Acesso a Aplicação**:
 
