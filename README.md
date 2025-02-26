@@ -31,9 +31,9 @@ Vídeo de Apresentação: https://youtu.be/TZ6kULzijKQ
 
 ## Acesso a Aplicação
 
-A Aplicação está ativa como um serviço em um servidor linux Mint local com o MongoDB no Atlas.
+A Aplicação está ativa como um serviço em um servidor linux Ubuntu local com o MongoDB no Atlas.
 
-Url de Acesso a Aplicação: http://sol.librian.info:5731
+Url de Acesso a Aplicação: [http://sol.librian.info:5731](http://sol.librian.info:5173/)
 
 
 
@@ -385,4 +385,4 @@ Caso queira rodar como serviço ver na documentação: /serviços/Como criar o s
 
 
 - O desenvolvimento foi realizado usando o VSCode em máquina Windows 11 com acesso a API via rede local.
-- O software foi implantado em produção em um servidor linux Mint local conectado a API via localhost, e a aplicação ativada como serviço.
+- O software foi implantado em produção em um servidor linux Ubuntu local, e as aplicações frontend e backend ativadas como serviço.
