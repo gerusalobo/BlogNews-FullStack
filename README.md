@@ -29,14 +29,6 @@ Tecnologias utilizadas:
 
 Vídeo de Apresentação: https://youtu.be/TZ6kULzijKQ
 
-## Acesso a Aplicação
-
-A Aplicação está ativa como um serviço em um servidor linux Ubuntu local com o MongoDB no Atlas.
-
-Url de Acesso a Aplicação: [http://sol.librian.info:5731](http://sol.librian.info:5173/)
-
-
-
 
 ## Funcionalidades
 
